@@ -1,0 +1,47 @@
+import java.util.*;
+import java.sql.*;
+
+public class AttendanceManagementSystem {
+    private Connection conn;
+    private Statement stmt;
+    private ResultSet rs;
+
+    public AttendanceManagementSystem() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance", "root", "password");
+            stmt = conn.createStatement();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void markAttendance(String studentId, String attendanceStatus) {
+        try {
+            String query = "INSERT INTO attendance (student_id, attendance_status) VALUES ('" + studentId + "', '" + attendanceStatus + "')";
+            stmt.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void generateReport() {
+        try {
+            String query = "SELECT * FROM attendance";
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                System.out.println("Student ID: " + rs.getString("student_id") + ", Attendance Status: " + rs.getString("attendance_status"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        AttendanceManagementSystem ams = new AttendanceManagementSystem();
+        ams.markAttendance("S1", "Present");
+        ams.markAttendance("S2", "Absent");
+        ams.generateReport();
+    }
+}
+

@@ -1,0 +1,15 @@
+import java.io.*;
+import java.util.*;
+import com.google.zxing.*;
+
+public class QRCodeScanner {
+    public static void main(String[] args) {
+        QRCodeScanner scanner = new QRCodeScanner();
+        scanner.scanQRCode();
+    }
+
+    private void scanQRCode() {
+        // Scan QR code using ZXing library
+    }
+}
+

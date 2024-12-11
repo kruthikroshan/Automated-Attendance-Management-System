@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+import com.rfid.api.*;
+
+public class RFIDReader {
+    public static void main(String[] args) {
+        RFIDReader reader = new RFIDReader();
+        reader.connect();
+        reader.readTags();
+        reader.disconnect();
+    }
+
+    private void connect() {
+        // Connect to RFID reader
+    }
+
+    private void readTags() {
+        // Read tags from RFID reader
+    }
+
+    private void disconnect() {
+        // Disconnect from RFID reader
+    }
+}
